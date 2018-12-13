@@ -1,0 +1,25 @@
+{
+    "schedules":[
+      {
+        "name": "Mobile Progragmming Final",
+        "spot": "Kookmin Univ 7",
+        "date": "2018-12-13",
+        "long": "135.9984",
+        "lat": "36.4456"
+      },
+      {
+        "name": "Opensoruce Final",
+        "spot": "Kookmin Univ 7",
+        "date": "2018-12-14",
+        "long": "135.9984",
+        "lat": "36.4456"
+      },
+      {
+        "name": "Statics",
+        "spot": "Kookmin Univ 7",
+        "date": "2018-12-14",
+        "long": "135.9984",
+        "lat": "36.4456"
+      }
+    ]
+  }
