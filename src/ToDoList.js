@@ -9,20 +9,23 @@ let today = new Date().toDateString()
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.setState = ({
+    this.state={
       counter: 0,
       percentage: 0,
-    })
-    
+    }
+    this.Check()
   }
 
   Check(){
-    this.setState.counter += 1
-    this.setState.percentage = this.setState.counter / Schedule.schedules.length * 100
-    this.setState.percentage = parseInt(this.setState.percentage)
+    counter = 0
+    percentage = 0
+    this.setState = ({
+      counter : this.state.counter + 1,
+      percentage : parseInt(counter / Schedule.schedules.length * 100)
+    });
   }
-  
+
+
   render() {
 
     var List_schedule = [];
@@ -42,9 +45,9 @@ export default class App extends Component {
         <Text> 오늘의 할 일 </Text>
         <Text>{Schedule.schedules.length}</Text>
         <Text>개 중 </Text>
-        <Text>{this.setState.counter}</Text>
+        <Text>{this.state.counter}</Text>
         <Text>개 달성! (</Text>
-        <Text>{this.setState.percentage}</Text>
+        <Text>{this.state.percentage}</Text>
         <Text>%) </Text>
       </View>
     )}
