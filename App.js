@@ -9,7 +9,7 @@ import ScreenSchedule from './src/Schedule';
 export default class App extends Component {
     state = {
         currentPage : ScreenLoading,
-        _id : "",
+
     }
     change = (category) => {
         if(category === "loading") {

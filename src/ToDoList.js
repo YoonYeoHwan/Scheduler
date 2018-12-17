@@ -9,20 +9,20 @@ let today = new Date().toDateString()
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.setState = ({
       counter: 0,
       percentage: 0,
-    };
+    })
+    
   }
 
   Check(){
-    this.state.counter += 1
-    this.state.percentage = this.state.counter / Schedule.schedules.length * 100
-    this.state.percentage = parseInt(this.state.percentage)
+    this.setState.counter += 1
+    this.setState.percentage = this.setState.counter / Schedule.schedules.length * 100
+    this.setState.percentage = parseInt(this.setState.percentage)
   }
   
-
-
   render() {
 
     var List_schedule = [];
@@ -31,33 +31,21 @@ export default class App extends Component {
       List_schedule.push(
         <View style={[styles.todo, {flexDirection: 'row'}]}>
           <CheckBox value={false} onChange={() => this.Check()} />
-          <Text styles={{color: 'black', fontSize: 20,}}>
+          <Text styles={{color: 'black', fontSize: 40,}}>
             {Schedule.schedules[i].name}
           </Text>
         </View>
       )      
 
-
-    No_ToDoList = (         
-      <View style={[styles.todo, {justifyContent: "center", alignItems: 'center'}]}>
-        <TouchableOpacity onPress={() => this.props.change('schedule')}>
-          <Image
-            style={{height: 25, width: 25}}
-            source={{uri: 'https://cdn.icon-icons.com/icons2/1141/PNG/512/1486395885-plus_80605.png'}}
-          />
-        </TouchableOpacity>
-      </View>
-    )
-
     Achieve = (
       <View style={styles.achieveRate}>
-      <Text> 오늘의 할 일 </Text>
-      <Text>{Schedule.schedules.length}</Text>
-      <Text>개 중 </Text>
-      <Text>{this.state.counter}</Text>
-      <Text>개 달성! (</Text>
-      <Text>{this.state.percentage}</Text>
-      <Text>%) </Text>
+        <Text> 오늘의 할 일 </Text>
+        <Text>{Schedule.schedules.length}</Text>
+        <Text>개 중 </Text>
+        <Text>{this.setState.counter}</Text>
+        <Text>개 달성! (</Text>
+        <Text>{this.setState.percentage}</Text>
+        <Text>%) </Text>
       </View>
     )}
 
@@ -75,7 +63,6 @@ export default class App extends Component {
         <ScrollView>
           <View style={{backgroundColor: "#ffffff"}}>
             {List_schedule}
-            {No_ToDoList}
           </View>
         </ScrollView>
 
@@ -100,9 +87,8 @@ const styles = StyleSheet.create({
   },
 
   achieveRate: {
-    width: 300 ,
+    width: 350 ,
     height: 40,
-    // borderRadius: 10,
     borderWidth: 2,
     borderColor: "#ff7675",
     backgroundColor: "#ffffff",
@@ -113,13 +99,12 @@ const styles = StyleSheet.create({
   },
 
   todo: {
-    height: 50,
-    width: 300,
+    height: 60,
+    width: 350,
     padding: 10,
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 10,
     backgroundColor: "#fab1a0",
-    // borderRadius: 10,
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row'
@@ -129,9 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#e0dede",
     width: 200,
     height: 30,
-    // borderRadius: 12,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 20,
+    marginBottom: 20,
     justifyContent: "center",
     alignItems: "center",
   }

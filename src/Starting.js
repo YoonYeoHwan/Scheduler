@@ -26,7 +26,7 @@ export default class App extends Component<Props> {
       image : 'https://cdn.icon-icons.com/icons2/317/PNG/512/map-map-marker-icon_34394.png',
       key : ''
     },
-    "setting" : {
+    "schedule" : {
       image : 'https://cdn.icon-icons.com/icons2/154/PNG/512/user_man_setting_21947.png',
       key : ''
     },
@@ -37,7 +37,7 @@ export default class App extends Component<Props> {
     "todolist" : ToDoList,
     "calendar" : Calendar,    
     "map" : MapScreen,
-    "setting" : Setting,
+    // "setting" : Setting,
     "schedule" : Schedule,
   }
   
