@@ -16,12 +16,13 @@ export default class App extends Component {
     this.Check()
   }
 
-  Check(){
-    counter = 0
-    percentage = 0
-    this.setState = ({
-      counter : this.state.counter + 1,
-      percentage : parseInt(counter / Schedule.schedules.length * 100)
+  // 장태진의 한마디 : Arrow Function을 써야 올바른 this를 쓸 수 있음
+  Check = () => {
+    // this.setState = ({
+    // setState 자체가 함수임 ;; 
+    this.setState({
+      counter: this.state.counter + 1,
+      percentage: parseInt((this.state.counter+1) / Schedule.schedules.length * 100)
     });
   }
 
@@ -33,7 +34,7 @@ export default class App extends Component {
     for (var i=0; i < Schedule.schedules.length; i++) {
       List_schedule.push(
         <View style={[styles.todo, {flexDirection: 'row'}]}>
-          <CheckBox value={false} onChange={() => this.Check()} />
+          <CheckBox value={false} onValueChange={this.Check} />
           <Text styles={{color: 'black', fontSize: 40,}}>
             {Schedule.schedules[i].name}
           </Text>
