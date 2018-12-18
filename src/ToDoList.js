@@ -28,7 +28,6 @@ export default class App extends Component {
     });
   }
 
-  
   render() {
 
     var List_schedule = [];
@@ -42,14 +41,6 @@ export default class App extends Component {
           <Text styles={{color: 'black', fontSize: 40,}}>
             {Schedule.schedules[i].name}
           </Text>
-
-            <TouchableOpacity>
-              <Image
-                source={require('../images/trash.png')}
-                style={{width: 25, height: 25}}
-              >
-              </Image>
-            </TouchableOpacity>
 
         </View>
       )      
