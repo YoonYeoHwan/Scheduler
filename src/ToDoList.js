@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, Button, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, CheckBox} from 'react-native';
 import {Dimensions} from "react-native";
 import Schedule from './Schedule.json';
+import SharedPreferences from 'react-native-shared-preferences';
 
 let today = new Date().toDateString()
 
@@ -12,6 +13,7 @@ export default class App extends Component {
     this.state={
       counter: 0,
       percentage: 0,
+      i: 0
     }
     this.Check()
   }
@@ -26,7 +28,7 @@ export default class App extends Component {
     });
   }
 
-
+  
   render() {
 
     var List_schedule = [];
@@ -34,12 +36,24 @@ export default class App extends Component {
     for (var i=0; i < Schedule.schedules.length; i++) {
       List_schedule.push(
         <View style={[styles.todo, {flexDirection: 'row'}]}>
+
           <CheckBox value={false} onValueChange={this.Check} />
+
           <Text styles={{color: 'black', fontSize: 40,}}>
             {Schedule.schedules[i].name}
           </Text>
+
+            <TouchableOpacity>
+              <Image
+                source={require('../images/trash.png')}
+                style={{width: 25, height: 25}}
+              >
+              </Image>
+            </TouchableOpacity>
+
         </View>
       )      
+
 
     Achieve = (
       <View style={styles.achieveRate}>
@@ -109,7 +123,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     backgroundColor: "#fab1a0",
-    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row'
   },

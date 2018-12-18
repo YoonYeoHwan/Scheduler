@@ -5,28 +5,28 @@
         "spot": "Kookmin Univ 7",
         "date": "2018-12-13",
         "lng": 126.996917,
-        "lat": 38.611026
+        "lat": 35.611026
       },
       {
         "name": "Opensoruce Final",
         "spot": "Kookmin Univ 7",
         "date": "2018-12-14",
         "lng": 126.12,
-        "lat": 38.99
+        "lat": 36.99
       },
       {
         "name": "Statics",
         "spot": "Kookmin Univ 7",
-        "date": "2018-12-14",
+        "date": "2018-12-16",
         "lng": 126.8,
-        "lat": 38.4
+        "lat": 36.4
       },
       {
         "name": "으다다",
         "spot": "Kookmin Univ 7",
-        "date": "2018-12-14",
+        "date": "2018-12-15",
         "lng": 126.9,
-        "lat": 38.615
+        "lat": 36.615
       }
 
     ]

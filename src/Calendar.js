@@ -2,14 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, AppRegistry, Image, TouchableOpacity} from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
-
-// {
-//   day: 1,     // day of month (1-31)
-//   month: 1,   // month of year (1-12)
-//   year: 2017, // year
-//   timestamp,   // UTC timestamp representing 00:00 AM of this date
-//   dateString: '2016-05-13' // date formatted as 'YYYY-MM-DD' string
-// }
+import Schedule1 from './Schedule.json';
 
 
 LocaleConfig.locales['fr'] = {
@@ -19,12 +12,29 @@ LocaleConfig.locales['fr'] = {
   dayNamesShort: ['SUN','MON','TUE','WED','THU','FRI','SAT']
 };
 
-// LocaleConfig.defaultLocale = 'fr';
+var newdays = []
 
+ for (var i=0; i<Schedule1.schedules.length; i++){
+      newdays.push(
+        Schedule1.schedules[i].date
+      )
+    }
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      marked: null,
+    };
+  }
+  componentDidMount() {
+    this.anotherFuc();
+  }
+  anotherFuc = () => {
+    var obj = newdays.reduce((c, v) => Object.assign(c, {[v]: {selected: true, marked: true}}), {});
+    this.setState({marked : obj});
+  }
+  render() {   
     return (
       <View>
         <Calendar
@@ -53,6 +63,7 @@ export default class App extends Component<Props> {
           titleFormat={'MMMM YYYY'}         // Format for displaying current month. Default: 'MMMM YYYY'
           today={'2017-05-16'}              // Defaults to today
           weekStart={1} // Day on which week starts 0 - Sunday, 1 - Monday, 2 - Tuesday, etc, Default: 1
+          markedDates={this.state.marked}
         />
       </View>
     );

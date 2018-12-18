@@ -11,57 +11,29 @@ export default class App extends Component {
       name: '일정',
       spot: '장소',
       date: '날짜',
-      lng: 1,
-      lat: 1,
-      user: {
-        latitude: 37.610436,
-        longitude: 126.995948,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-    },
-      markers: [],
-      findgps : true,
-      stops: []
+      lng: '경도',
+      lat: '위도',
     };
   }
-
-  getInitialState() {
-    return {
-      region: {
-        latitude: 37.610436,
-        longitude: 126.995948,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      },
-    };
-  }
-
-  onRegionChange(region) {
-    this.setState({ region });
-  }
-
-  // CancelButton = (
-  //   <TouchableOpacity onPress={() => { this.props.change('starting'); }}>
-  //     <View style={styles.button1}>
-  //       <Text style={{fontSize: 20, color: 'black'}}>취소</Text>
-  //     </View>
-  //   </TouchableOpacity>
-  // )
 
   Save() {
-    Schedule.schedules.push({
-      "name": this.state.name,
-      "spot": this.state.spot,
-      "date": this.state.date,
-      "lng": this.state.lng,
-      "lat": this.state.lat
-    })
-
+    if (((isNaN(this.state.lng) && isNaN(this.state.lat)) == false) && (-90 < parseFloat(this.state.lat) < 90) && (-180 < parseFloat(this.state.lng) < 180)) {
+        Schedule.schedules.push({
+        "name": this.state.name,
+        "spot": this.state.spot,
+        "date": this.state.date,
+        "lng": parseFloat(this.state.lng),
+        "lat": parseFloat(this.state.lat)
+        })
+    }
+    else {
+      alert("위도 경도 입력이 바르지 않습니다.")
+    }
   }
 
   SaveButton = (
     <TouchableOpacity onPress={() => this.Save()}>
-      <View style={styles.button2}>
+      <View style={styles.button}>
         <Text style={{fontSize: 20, color: 'black'}}>저장</Text>
       </View>
     </TouchableOpacity>
@@ -96,38 +68,21 @@ export default class App extends Component {
         />
      </View>
 
+     <View style={styles.inputText}>
+        <TextInput
+          multiline = {false}
+          onChangeText={(lng) => this.setState({lng})}
+          value={this.state.lng}
+        />
+     </View>
 
-      <View style={{height: 240, width: 350, marginBottom: 10, marginTop: 5, justifyContent: 'center', alignSelf: 'center',}}>
-
-      {this.state.findgps ?
-              (<MapView style={styles.mapview}
-                  showsUserLocation = {true}
-                  initialRegion={{
-                      latitude: 38.611026,
-                      longitude: 126.996917,
-                      latitudeDelta: 0.05,
-                      longitudeDelta: 0.05,
-                  }}
-                  region={this.state.user}
-                  loadingEnabled={true}
-                  rotateEnabled={true}
-                  scrollEnabled={true}
-                  pitchEnabled={true}
-                  zoomEnabled={true}
-
-              >
-
-
-              </MapView>) :
-              (<View style={{flex:1, justifyContent:'space-between', alignItems:'center'}}>
-                <Text>    </Text>
-                <Text style={{fontSize:30}}>GPS가 잘 동작하지 않습니다</Text>
-                <Text>    </Text>
-              </View>)
-            }
-
-
-      </View>
+     <View style={styles.inputText}>
+        <TextInput
+          multiline = {false}
+          onChangeText={(lat) => this.setState({lat})}
+          value={this.state.lat}
+        />
+     </View>
 
 
      <View style={{flexDirection: "column", justifyContent: 'center', alignItems: 'center', alignContent: 'flex-end'}}>
@@ -160,23 +115,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
 
-  button1: {
-    height: 50,
-    width: 350,
-    backgroundColor: '#A4A4A4',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10
-  },
-
-  button2: {
+  button: {
     height: 50,
     width: 350,
     backgroundColor: '#ff7675',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  mapview:{
-    flex: 1
-  }
 });
